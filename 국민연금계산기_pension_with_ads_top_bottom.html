@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>국민연금 계산기</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5728933374966304" crossorigin="anonymous"></script>
+</head>
+<body style="font-family: Arial; max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+
+  <!-- 상단 광고 -->
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center; margin-bottom: 20px;"
+       data-ad-layout="in-article"
+       data-ad-format="fluid"
+       data-ad-client="ca-pub-5728933374966304"
+       data-ad-slot="1234567890"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <h2 style="text-align: center;">국민연금 계산기</h2>
+
+  <label>월 평균소득 (만원):</label><br>
+  <input type="number" id="income" placeholder="예: 300"><br><br>
+
+  <label>가입기간 (년):</label><br>
+  <input type="number" id="years" placeholder="예: 20"><br><br>
+
+  <label>수령 시작 나이:</label><br>
+  <select id="startAge">
+    <option value="60">60세</option>
+    <option value="65">65세</option>
+  </select><br><br>
+
+  <label>크레딧 기간 (출산/군복무, 년):</label><br>
+  <input type="number" id="credit" value="0"><br><br>
+
+  <button onclick="calcPension()">계산하기</button>
+
+  <p id="result" style="margin-top: 20px; font-weight: bold;"></p>
+
+  <!-- 하단 광고 -->
+  <ins class="adsbygoogle"
+       style="display:block; text-align:center; margin-top: 30px;"
+       data-ad-layout="in-article"
+       data-ad-format="fluid"
+       data-ad-client="ca-pub-5728933374966304"
+       data-ad-slot="1234567890"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <script>
+    function calcPension() {
+      var income = Number(document.getElementById("income").value);
+      var years = Number(document.getElementById("years").value);
+      var startAge = Number(document.getElementById("startAge").value);
+      var credit = Number(document.getElementById("credit").value);
+
+      var totalYears = years + credit;
+      var months = totalYears * 12;
+      var rate = 0.006;
+      var monthly = income * 10000 * months * rate / 12;
+      var lifeExp = 85;
+      var totalReceive = monthly * (lifeExp - startAge) * 12;
+
+      document.getElementById("result").innerText =
+        "예상 월 수령액: " + Math.round(monthly).toLocaleString() + "원\n" +
+        "총 수령 예상액: " + Math.round(totalReceive).toLocaleString() + "원";
+    }
+  </script>
+</body>
+</html>
